@@ -77,40 +77,6 @@
     pointer-events: none;
   }
 
-  .circuits {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-  .circuits path {
-    fill: none;
-    stroke: var(--blue);
-    stroke-width: 1.2;
-    opacity: 0.18;
-  }
-  .circuits circle {
-    fill: var(--cyan);
-    opacity: 0.7;
-  }
-  .pulse {
-    stroke-dasharray: 6 460;
-    stroke-dashoffset: 0;
-    opacity: 0.85;
-    filter: drop-shadow(0 0 5px var(--cyan));
-    animation: travel 7s linear infinite;
-    stroke: var(--cyan);
-  }
-  .pulse.p2 { animation-delay: 2.3s; }
-  .pulse.p3 { animation-delay: 4.6s; }
-
-  @keyframes travel {
-    0%   { stroke-dashoffset: 0;    opacity: 0; }
-    4%   { opacity: 0.9; }
-    92%  { opacity: 0.9; }
-    100% { stroke-dashoffset: -466; opacity: 0; }
-  }
 
   .content {
     position: relative;
@@ -207,16 +173,6 @@
   .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
   .btn svg { width: 16px; height: 16px; }
 
-  .link {
-    font-size: 0.95rem;
-    color: var(--text-2);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0, 200, 255, 0.25);
-    padding-bottom: 2px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-  }
-  .link:hover { color: var(--cyan); border-color: var(--cyan); }
-  .link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 
   footer {
     position: relative;
@@ -231,9 +187,7 @@
     .actions { flex-direction: column; gap: 14px; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .pulse { animation: none; opacity: 0.4; }
-  }
+  @media (prefers-reduced-motion: reduce) { }
 </style>
 </head>
 <body>
@@ -241,24 +195,6 @@
   <main class="stage">
     <div class="glow" aria-hidden="true"></div>
 
-    <svg class="circuits" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path d="M 0 620 L 260 620 L 320 560 L 520 560 L 560 520" />
-      <path d="M 1200 640 L 940 640 L 880 580 L 680 580 L 640 540" />
-      <path d="M 140 0 L 140 180 L 220 260 L 220 400" />
-      <path d="M 1060 0 L 1060 160 L 980 240 L 980 380" />
-      <path d="M 0 220 L 180 220 L 240 280" />
-      <path d="M 1200 260 L 1000 260 L 940 320" />
-      <circle cx="560" cy="520" r="4" />
-      <circle cx="640" cy="540" r="4" />
-      <circle cx="220" cy="400" r="3.4" />
-      <circle cx="980" cy="380" r="3.4" />
-      <circle cx="240" cy="280" r="3" />
-      <circle cx="940" cy="320" r="3" />
-
-      <path class="pulse p1" d="M 0 620 L 260 620 L 320 560 L 520 560 L 560 520" />
-      <path class="pulse p2" d="M 1200 640 L 940 640 L 880 580 L 680 580 L 640 540" />
-      <path class="pulse p3" d="M 140 0 L 140 180 L 220 260 L 220 400" />
-    </svg>
 
     <div class="content">
       <span class="eyebrow">Placeholder page &mdash; the real site is being built</span>
@@ -271,12 +207,9 @@
       </p>
 
       <div class="actions">
-        <a class="btn" href="https://www.youtube.com/@FinishOnMyTerms" target="_blank" rel="noopener">
+        <a class="btn" href="https://www.youtube.com/@FinishOnMyTerms?sub_confirmation=1" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2c-.25-1.03-1.02-1.84-2-2.1C17.9 4.6 12 4.6 12 4.6s-5.9 0-7.6.5c-.98.26-1.75 1.07-2 2.1C2 9 2 12 2 12s0 3 .4 4.8c.25 1.03 1.02 1.8 2 2.06 1.7.54 7.6.54 7.6.54s5.9 0 7.6-.54c.98-.26 1.75-1.03 2-2.06.4-1.8.4-4.8.4-4.8s0-3-.4-4.8ZM10 15.2V8.8L15.8 12 10 15.2Z"/></svg>
           Watch on YouTube
-        </a>
-        <a class="link" href="https://www.youtube.com/@FinishOnMyTerms?sub_confirmation=1" target="_blank" rel="noopener">
-          Subscribe for the next video
         </a>
       </div>
     </div>
