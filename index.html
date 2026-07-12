@@ -7,202 +7,232 @@
 <meta name="description" content="A channel for people over 50 who are done waiting on somebody else's clock. Building income with AI, on my own timeline.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --void:#060a12;
-    --void-2:#0b1220;
-    --cyan:#3be6ff;
-    --gold:#d8a94a;
-    --paper:#eef2f6;
-    --slate:#7d8aa0;
-  }
-  *{box-sizing:border-box;}
-  html,body{height:100%;}
-  body{
-    margin:0;
-    background:var(--void);
-    color:var(--paper);
-    font-family:'Inter',system-ui,sans-serif;
-    overflow-x:hidden;
+  :root {
+    --bg:         #06090F;
+    --bg-2:       #0C1220;
+    --blue:       #0070FF;
+    --blue-light: #3D95FF;
+    --cyan:       #00C8FF;
+    --cyan-light: #60DEFF;
+    --text:       #E2E8F4;
+    --text-2:     #7B8FAB;
+    --text-3:     #3D4F68;
+    --border:     rgba(0, 140, 255, 0.12);
+    --glow-blue:  0 0 60px rgba(0, 112, 255, 0.25);
+    --glow-cyan:  0 0 40px rgba(0, 200, 255, 0.20);
+    --grad:       linear-gradient(135deg, #0070FF 0%, #00C8FF 100%);
   }
 
-  .stage{
-    position:relative;
-    min-height:100svh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:6vh 6vw;
-    text-align:center;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.6;
   }
 
-  .stage::before{
-    content:"";
-    position:absolute;
-    inset:0;
+  .stage {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 6vw;
+    text-align: center;
+  }
+
+  .stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background-image:
-      linear-gradient(var(--void-2) 1px, transparent 1px),
-      linear-gradient(90deg, var(--void-2) 1px, transparent 1px);
-    background-size:48px 48px;
-    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 42%, #000 40%, transparent 85%);
-            mask-image:radial-gradient(ellipse 70% 60% at 50% 42%, #000 40%, transparent 85%);
-    opacity:0.55;
-  }
-  .glow{
-    position:absolute;
-    top:38%;
-    left:50%;
-    width:60vw;
-    height:60vw;
-    max-width:820px;
-    max-height:820px;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(circle, rgba(59,230,255,0.10) 0%, rgba(59,230,255,0) 62%);
-    pointer-events:none;
+      linear-gradient(var(--bg-2) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bg-2) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 42%, #000 30%, transparent 85%);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 42%, #000 30%, transparent 85%);
+    opacity: 0.5;
   }
 
-  .circuits{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-  }
-  .circuits path{
-    fill:none;
-    stroke:var(--cyan);
-    stroke-width:1.4;
-    opacity:0.28;
-  }
-  .circuits circle{
-    fill:var(--cyan);
-    opacity:0.9;
-  }
-  .pulse{
-    stroke-dasharray:6 460;
-    stroke-dashoffset:0;
-    opacity:0.9;
-    filter:drop-shadow(0 0 4px var(--cyan));
-    animation:travel 7s linear infinite;
-  }
-  .pulse.p2{ animation-delay:2.3s; }
-  .pulse.p3{ animation-delay:4.6s; }
-
-  @keyframes travel{
-    0%{ stroke-dashoffset:0; opacity:0; }
-    4%{ opacity:1; }
-    92%{ opacity:1; }
-    100%{ stroke-dashoffset:-466; opacity:0; }
+  .glow {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 70vw;
+    height: 70vw;
+    max-width: 900px;
+    max-height: 900px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+      rgba(0, 112, 255, 0.14) 0%,
+      rgba(0, 200, 255, 0.07) 40%,
+      transparent 70%);
+    pointer-events: none;
   }
 
-  .content{
-    position:relative;
-    z-index:1;
-    max-width:760px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:22px;
+  .circuits {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .circuits path {
+    fill: none;
+    stroke: var(--blue);
+    stroke-width: 1.2;
+    opacity: 0.18;
+  }
+  .circuits circle {
+    fill: var(--cyan);
+    opacity: 0.7;
+  }
+  .pulse {
+    stroke-dasharray: 6 460;
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 5px var(--cyan));
+    animation: travel 7s linear infinite;
+    stroke: var(--cyan);
+  }
+  .pulse.p2 { animation-delay: 2.3s; }
+  .pulse.p3 { animation-delay: 4.6s; }
+
+  @keyframes travel {
+    0%   { stroke-dashoffset: 0;    opacity: 0; }
+    4%   { opacity: 0.9; }
+    92%  { opacity: 0.9; }
+    100% { stroke-dashoffset: -466; opacity: 0; }
   }
 
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    color:var(--slate);
-    border:1px solid rgba(125,138,160,0.35);
-    padding:7px 14px;
-    border-radius:999px;
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--cyan);
-    box-shadow:0 0 8px var(--cyan);
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
   }
 
-  h1{
-    font-family:'Orbitron',sans-serif;
-    font-weight:800;
-    font-size:clamp(2.4rem, 7vw, 4.6rem);
-    line-height:1.04;
-    letter-spacing:0.01em;
-    margin:0;
-    color:var(--gold);
-    text-shadow:0 0 34px rgba(216,169,74,0.28);
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(0, 112, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 112, 255, 0.08);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan), 0 0 16px rgba(0, 200, 255, 0.5);
   }
 
-  p.lede{
-    font-size:clamp(1.02rem, 2.1vw, 1.2rem);
-    line-height:1.6;
-    color:var(--paper);
-    max-width:56ch;
-    margin:0;
-  }
-  p.lede b{ color:var(--gold); font-weight:600; }
-
-  .actions{
-    margin-top:6px;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 7.5vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-shadow: var(--glow-blue);
+    margin: 0;
   }
 
-  .btn{
-    font-family:'Inter',sans-serif;
-    font-weight:600;
-    font-size:0.98rem;
-    color:var(--void);
-    background:var(--gold);
-    padding:14px 26px;
-    border-radius:8px;
-    text-decoration:none;
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    transition:transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow:0 0 0 rgba(216,169,74,0);
-  }
-  .btn:hover{ transform:translateY(-1px); box-shadow:0 8px 24px rgba(216,169,74,0.25); }
-  .btn:focus-visible{ outline:2px solid var(--cyan); outline-offset:3px; }
-  .btn svg{ width:16px; height:16px; }
-
-  .link{
-    font-size:0.95rem;
-    color:var(--slate);
-    text-decoration:none;
-    border-bottom:1px solid rgba(125,138,160,0.4);
-    padding-bottom:2px;
-  }
-  .link:hover{ color:var(--paper); border-color:var(--paper); }
-  .link:focus-visible{ outline:2px solid var(--cyan); outline-offset:3px; }
-
-  footer{
-    position:relative;
-    z-index:1;
-    padding:22px 6vw 28px;
-    text-align:center;
-    font-size:0.8rem;
-    color:var(--slate);
-  }
-  footer span{ color:rgba(125,138,160,0.6); }
-
-  @media (max-width:480px){
-    .actions{ flex-direction:column; gap:14px; }
+  h1 span {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  @media (prefers-reduced-motion: reduce){
-    .pulse{ animation:none; opacity:0.5; }
+  .lede {
+    font-size: clamp(1.02rem, 2.1vw, 1.2rem);
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 54ch;
+    margin: 0;
+  }
+  .lede b {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  .actions {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: #fff;
+    background: var(--grad);
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 0 0 rgba(0, 112, 255, 0);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 112, 255, 0.40), 0 0 20px rgba(0, 200, 255, 0.20);
+  }
+  .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .btn svg { width: 16px; height: 16px; }
+
+  .link {
+    font-size: 0.95rem;
+    color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 200, 255, 0.25);
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .link:hover { color: var(--cyan); border-color: var(--cyan); }
+  .link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 22px 6vw 28px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 480px) {
+    .actions { flex-direction: column; gap: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse { animation: none; opacity: 0.4; }
   }
 </style>
 </head>
@@ -233,7 +263,7 @@
     <div class="content">
       <span class="eyebrow">Placeholder page &mdash; the real site is being built</span>
 
-      <h1>Finish On My Terms</h1>
+      <h1>Finish On <span>My Terms</span></h1>
 
       <p class="lede">
         A channel for people over 50 who are done waiting on somebody else's clock.
@@ -242,8 +272,8 @@
 
       <div class="actions">
         <a class="btn" href="https://www.youtube.com/@FinishOnMyTerms" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2c-.25-1.03-1.02-1.84-2-2.1C17.9 4.6 12 4.6 12 4.6s-5.9 0-7.6.5c-.98.26-1.75 1.07-2 2.1C2 9 2 12 2 12s0 3 .4 4.8c.25 1.03 1.02 1.8 2 2.06 1.7.54 7.6.54 7.6.54s5.9 0 7.6-.54c.98-.26 1.75-1.03 2-2.06.4-1.8.4-4.8.4-4.8s0-3-.4-4.8ZM10 15.2V8.8L15.8 12 10 15.2Z"/></svg>
           Watch on YouTube
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2c-.25-1.03-1.02-1.84-2-2.1C17.9 4.6 12 4.6 12 4.6s-5.9 0-7.6.5c-.98.26-1.75 1.07-2 2.1C2 9 2 12 2 12s0 3 .4 4.8c.25 1.03 1.02 1.8 2 2.06 1.7.54 7.6.54 7.6.54s5.9 0 7.6-.54c.98-.26 1.75-1.03 2-2.06.4-1.8.4-4.8.4-4.8s0-3-.4-4.8ZM10 15.2V8.8L15.8 12 10 15.2Z"/></svg>
         </a>
         <a class="link" href="https://www.youtube.com/@FinishOnMyTerms?sub_confirmation=1" target="_blank" rel="noopener">
           Subscribe for the next video
@@ -253,7 +283,7 @@
   </main>
 
   <footer>
-    This page is a placeholder while the full site gets built. <span>&middot;</span> &copy; <span id="y"></span> Finish On My Terms
+    This page is a placeholder while the full site gets built. &middot; &copy; <span id="y"></span> Finish On My Terms
   </footer>
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
